@@ -4,7 +4,7 @@ buildscript {
     }
 
     dependencies {
-        classpath 'com.android.tools.build:gradle:0.5+'
+        classpath 'com.android.tools.build:gradle:0.5.4'
     }
 }
 
@@ -15,6 +15,10 @@ repositories {
         url 'https://github.com/Goddchen/mvn-repo/raw/master/'
     }
     mavenCentral()
+}
+
+task wrapper(type: Wrapper) {
+    gradle = "1.6"
 }
 
 android {
@@ -36,6 +40,21 @@ dependencies {
     compile 'com.google.inject:guice:3.0'
 }
 
-task wrapper(type: Wrapper) {
-  gradle = "1.6"
+apply plugin: 'maven-publish'
+
+group = 'org.holoeverywhere'
+version = '2.0-SNAPSHOT'
+
+android.libraryVariants
+publishing {
+    publications {
+        maven(MavenPublication) {
+            artifact bundleRelease
+        }
+    }
+    repositories {
+        maven {
+            url "$buildDir/repo"
+        }
+    }
 }
