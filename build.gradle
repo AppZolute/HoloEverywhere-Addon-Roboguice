@@ -1,0 +1,41 @@
+buildscript {
+    repositories {
+        mavenCentral()
+    }
+
+    dependencies {
+        classpath 'com.android.tools.build:gradle:0.5+'
+    }
+}
+
+apply plugin: 'android-library'
+
+repositories {
+    maven {
+        url 'https://github.com/Goddchen/mvn-repo/raw/master/'
+    }
+    mavenCentral()
+}
+
+android {
+    sourceSets {
+        main {
+            manifest.srcFile 'AndroidManifest.xml'
+            java.srcDirs = ['src']
+            res.srcDirs = ['res']
+        }
+    }
+    buildToolsVersion "17.0"
+    compileSdkVersion 17
+}
+
+dependencies {
+    compile 'com.android.support:support-v4:13.0.0'
+    compile 'org.holoeverywhere:holoeverywhere:1.6.8'
+    compile 'org.roboguice:roboguice:2.1-SNAPSHOT'
+    compile 'com.google.inject:guice:3.0'
+}
+
+task wrapper(type: Wrapper) {
+  gradle = "1.6"
+}

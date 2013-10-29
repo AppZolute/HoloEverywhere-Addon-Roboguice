@@ -312,7 +312,7 @@ public class AddonRoboguice extends IAddon {
     @SuppressWarnings("unchecked")
     public static <T extends Context & RoboContext> T getContext(Context context) {
         if (context instanceof Activity) {
-            return getContext((Activity) context);
+            return AddonRoboguice.<T>getContext((Activity) context);
         }
         if (context instanceof RoboContext) {
             return (T) context;
@@ -327,7 +327,7 @@ public class AddonRoboguice extends IAddon {
     }
 
     public static <T extends Context & RoboContext> T getContext(Fragment fragment) {
-        return getContext(fragment.getSupportActivity());
+        return AddonRoboguice.<T>getContext(fragment.getSupportActivity());
     }
 
     public static HoloInjector getInjector(Activity activity) {
