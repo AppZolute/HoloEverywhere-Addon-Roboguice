@@ -34,27 +34,22 @@ android {
 }
 
 dependencies {
-    compile 'com.android.support:support-v4:13.0.0'
     compile 'org.holoeverywhere:holoeverywhere:1.6.8'
-    compile 'org.roboguice:roboguice:2.1-SNAPSHOT'
-    compile 'com.google.inject:guice:3.0'
+    compile 'org.roboguice:roboguice:2.0'
 }
 
-apply plugin: 'maven-publish'
+apply plugin: 'maven'
 
 group = 'org.holoeverywhere'
 version = '2.0-SNAPSHOT'
 
-android.libraryVariants
-publishing {
-    publications {
-        maven(MavenPublication) {
-            artifact bundleRelease
-        }
-    }
+uploadArchives {
     repositories {
-        maven {
-            url "$buildDir/repo"
+        mavenDeployer {
+            repository(url: "file://$buildDir/repo")
+            pom {
+              artifactId = 'addon-roboguice'
+            }
         }
     }
 }
