@@ -13,6 +13,7 @@ import org.holoeverywhere.LayoutInflater;
 import org.holoeverywhere.app.Activity;
 import org.holoeverywhere.app.Application;
 import org.holoeverywhere.app.Fragment;
+import org.holoeverywhere.addon.IAddon.Addon;
 
 import roboguice.RoboGuice;
 import roboguice.activity.event.OnActivityResultEvent;
@@ -49,6 +50,7 @@ import com.google.inject.Provider;
 import com.google.inject.util.Modules;
 import com.google.inject.util.Modules.OverriddenModuleBuilder;
 
+@Addon(weight = 30, inhert = true)
 public class AddonRoboguice extends IAddon {
     public static class AddonRoboguiceA extends IAddonActivity implements Provider<Activity> {
         private EventManager mEventManager;
